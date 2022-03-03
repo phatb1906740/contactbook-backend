@@ -1,4 +1,6 @@
+//Import thư viện Express
 const express = require("express");
+// Imporrt thư viện CORS
 const cors = require("cors");
 const res = require("express/lib/response");
 const setupContactRoutes = require("./app/routes/contact.routes");
@@ -18,12 +20,12 @@ app.get("/", (req,res) => {
 
 setupContactRoutes(app);
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
     next(new BadRequestError(404, "Resource not found"));
 });
 
 app.use((err, req, res, next) => {
-    errorHandler.handleError(error, res);
+    errorHandler.handleError(err, res);
 });
 
 module.exports = app;
